@@ -1,2 +1,3 @@
 %ProjectName%/Makefile
 %ProjectName%/src/main.c
+%ProjectName%/src/pins.h

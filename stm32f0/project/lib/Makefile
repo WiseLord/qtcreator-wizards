@@ -6,11 +6,13 @@ CMSIS_LIB := $(STDPERIPH_LIB)/Libraries/CMSIS
 STDPERIPH_DRIVER := $(STDPERIPH_LIB)/Libraries/STM32F0xx_StdPeriph_Driver
 STM32F0XX_TEMPLATE := $(STDPERIPH_LIB)/Projects/STM32F0xx_StdPeriph_Templates/stm32f0xx_conf.h
 
-CC := %ToolChain%/bin/arm-none-eabi-gcc
-AR := %ToolChain%/bin/arm-none-eabi-ar
+TOOLCHAIN_PREFIX := %ToolChain%/bin/
+CC := $(TOOLCHAIN_PREFIX)arm-none-eabi-gcc
+AR := $(TOOLCHAIN_PREFIX)arm-none-eabi-ar
 
 CFLAGS := -g -O2 -Wall
 CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m0 -march=armv6s-m
+CFLAGS += -ffunction-sections -fdata-sections
 CFLAGS += -ffreestanding -nostdlib
 
 CFLAGS += -I $(CMSIS_LIB)/Device/ST/STM32F0xx/Include

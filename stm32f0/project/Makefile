@@ -16,10 +16,11 @@ vpath %.c src
 SRCS := $(notdir $(wildcard src/*.c))
 
 OPENOCD := openocd
-CC := %ToolChain%/bin/arm-none-eabi-gcc
-OBJCOPY := %ToolChain%/bin/arm-none-eabi-objcopy
-OBJDUMP := %ToolChain%/bin/arm-none-eabi-objdump
-SIZE := %ToolChain%/bin/arm-none-eabi-size
+TOOLCHAIN_PREFIX := %ToolChain%/bin/
+CC := $(TOOLCHAIN_PREFIX)arm-none-eabi-gcc
+OBJCOPY := $(TOOLCHAIN_PREFIX)arm-none-eabi-objcopy
+OBJDUMP := $(TOOLCHAIN_PREFIX)arm-none-eabi-objdump
+SIZE := $(TOOLCHAIN_PREFIX)arm-none-eabi-size
 
 CFLAGS := -Wall -g -std=c99 -Os
 CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m0 -march=armv6s-m
@@ -44,7 +45,7 @@ OBJS := $(SRCS:.c=.o)
 all: $(OUT_DIR) $(STDPERIPH_AR) $(TARGET)
 
 $(STDPERIPH_AR):
-	$(MAKE) -C lib
+	$(MAKE) -C lib STDPERIPH_LIB=$(STDPERIPH_LIB) STM32F0_DEV=$(STM32F0_DEV)
 
 $(OUT_DIR):
 	mkdir $(OUT_DIR)
