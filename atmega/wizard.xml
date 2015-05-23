@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wizard version="1" kind="project" class="" firstpage="10"
+		category="A.MCU" id="B.AtmegaAVR">
+	<icon>atmega168.jpg</icon>
+	<description>Creates an ATmega project based on the Makefile</description>
+	<description xml:lang="ru">Создание проекта для ATmega на базе Makefile</description>
+	<displaycategory>Microcontrollers</displaycategory>
+	<displaycategory xml:lang="ru">Микроконтроллеры</displaycategory>
+	<displayname>AVR Atmega Project</displayname>;
+	<displayname xml:lang="ru">Проект на AVR Atmega</displayname>;
+	<files>
+		<file source="project.creator"  target="%ProjectName%.creator" openproject="true"/>
+		<file source="project.includes" target="%ProjectName%.includes"/>
+		<file source="project.config"   target="%ProjectName%.config"/>
+		<file source="project.files"    target="%ProjectName%.files"/>
+
+		<file source="src/main.c"       target="src/main.c" openeditor="true"/>
+		<file source="src/pins.h"       target="src/pins.h"/>        
+		<file source="src/Makefile"     target="src/Makefile"/>        
+		<file source="src/size.sh"      target="src/size.sh"/>        
+	</files>
+
+	<!-- Create a 2nd wizard page with custom parameters -->
+	<fieldpagetitle>Parameters</fieldpagetitle>
+	<fieldpagetitle xml:lang="ru">Параметры</fieldpagetitle>
+	<fields>
+		<field mandatory="false" name="MCU">
+			<fielddescription>AVR MCU:</fielddescription>
+			<fielddescription xml:lang="ru">AVR контроллер:</fielddescription>
+			<fieldcontrol class="QLineEdit" validator='^[^"]+$'
+					defaulttext="atmega8" />
+		</field>
+		<field mandatory="true" name="F_CPU">
+			<fielddescription>CPU freq. [Hz]:</fielddescription>
+			<fielddescription xml:lang="ru">Частота [Гц]:</fielddescription>
+			<fieldcontrol class="QLineEdit" validator='^\d{5,8}$'
+					defaulttext="8000000" />
+		</field>
+		<field mandatory="true" name="AVR_INCLUDE_DIR">
+			<fielddescription>Headers dir:</fielddescription>
+			<fielddescription xml:lang="ru">Загол. файлы:</fielddescription>
+			<fieldcontrol class="Utils::PathChooser"
+					defaulttext="/usr/avr/include" />
+		</field>
+		<field mandatory="false" name="FUSEBIT_STRING">
+			<fielddescription>Avrdude FUSEs:</fielddescription>
+			<fielddescription xml:lang="ru">FUSE для avrdude:</fielddescription>
+			<fieldcontrol class="QLineEdit" validator='^[^"]+$'
+					defaulttext="-U lfuse:w:0xE4:m -U hfuse:w:0xC9:m" />
+		</field>
+	</fields>
+</wizard>
