@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wizard version="1" kind="project" class="" firstpage="10"
+		category="A.MCU" id="B.STM32F0">
+	<icon>stm32.jpg</icon>
+	<description>Creates an STM32F0xx project based on the Makefile</description>
+	<description xml:lang="ru">Создание проекта для STM32F0 на базе Makefile</description>
+	<displaycategory>Microcontrollers</displaycategory>
+	<displaycategory xml:lang="ru">Микроконтроллеры</displaycategory>
+	<displayname>SRM32F0xx Project</displayname>;
+	<displayname xml:lang="ru">Проект на STM32F0xx</displayname>;
+	<files>
+		<file source="project.creator"                                 target="%ProjectName%.creator" openproject="true"/>
+		<file source="project.includes"                                target="%ProjectName%.includes"/>
+		<file source="project.config"                                  target="%ProjectName%.config"/>
+		<file source="project.files"                                   target="%ProjectName%.files"/>
+
+		<file source="project/src/main.c"                              target="%ProjectName%/src/main.c" openeditor="true"/>
+		<file source="project/Makefile"                                target="%ProjectName%/Makefile"/>        
+		<file source="project/.gitignore"                              target="%ProjectName%/.gitignore"/>        
+		<file source="project/lib/Makefile"                            target="%ProjectName%/lib/Makefile"/>        
+		<file source="project/lib/.gitignore"                          target="%ProjectName%/lib/.gitignore"/>        
+		<file source="project/extra/stm32f0-openocd.cfg"               target="%ProjectName%/extra/stm32f0-openocd.cfg"/>        
+		<file source="project/extra/ldscripts/sections_flash.ld"       target="%ProjectName%/extra/ldscripts/sections_flash.ld"/>        
+		<file source="project/extra/ldscripts/stm32f0.ld"              target="%ProjectName%/extra/ldscripts/stm32f0.ld"/>        
+		<file source="project/extra/ldscripts/stm32f0discovery_def.ld" target="%ProjectName%/extra/ldscripts/stm32f0discovery_def.ld"/>        
+	</files>
+
+	<!-- Create a 2nd wizard page with custom parameters -->
+	<fieldpagetitle>Parameters</fieldpagetitle>
+	<fieldpagetitle xml:lang="ru">Параметры</fieldpagetitle>
+	<fields>
+		<field mandatory="false" name="STM32F0Dev">
+			<fielddescription>STM32F0xx MCU:</fielddescription>
+			<fielddescription xml:lang="ru">STM32F0xx контроллер:</fielddescription>
+			<fieldcontrol class="QLineEdit" validator='^[^"]+$'
+					defaulttext="STM32F051" />
+		</field>
+		<field mandatory="true" name="StdPeriph_Lib">
+			<fielddescription>StdPeriph library dir:</fielddescription>
+			<fielddescription xml:lang="ru">Библиотека StdPeriph:</fielddescription>
+			<fieldcontrol class="Utils::PathChooser"
+					defaulttext="/home/ARM/STM32F0xx_StdPeriph_Lib_V1.5.0" />
+		</field>
+		<field mandatory="true" name="ToolChain">
+			<fielddescription>ToolChain dir:</fielddescription>
+			<fielddescription xml:lang="ru">Каталог с тулчейном:</fielddescription>
+			<fieldcontrol class="Utils::PathChooser"
+					defaulttext="/home/ARM/gcc-arm-none-eabi-4_8-2014q2" />
+		</field>
+	</fields>
+</wizard>
