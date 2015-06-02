@@ -2,11 +2,11 @@ TARGET := %ProjectName%
 
 STM32F0_DEV := %STM32F0Dev%
 
-STDPERIPH_LIB := %StdPeriph_Lib%
+SPL_PATH := %StdPeriph_Lib%
 
-CMSIS_LIB := $(STDPERIPH_LIB)/Libraries/CMSIS
-STDPERIPH_DRIVER := $(STDPERIPH_LIB)/Libraries/STM32F0xx_StdPeriph_Driver
-STM32F0XX_TEMPLATE := $(STDPERIPH_LIB)/Projects/STM32F0xx_StdPeriph_Templates/stm32f0xx_conf.h
+CMSIS_LIB := $(SPL_PATH)/Libraries/CMSIS
+STDPERIPH_DRIVER := $(SPL_PATH)/Libraries/STM32F0xx_StdPeriph_Driver
+STM32F0XX_TEMPLATE := SPL/stm32f0xx_conf.h
 LDSCRIPT_INC := extra/ldscripts
 OPENOCD_BOARD_DIR := /usr/share/openocd/scripts/board
 OPENOCD_PROC_FILE := extra/stm32f0-openocd.cfg
@@ -33,25 +33,25 @@ CFLAGS += -I $(STDPERIPH_DRIVER)/inc
 
 # Filename (lowercase) of library from objects archive
 lc = $(shell echo $1 | tr '[:upper:]' '[:lower:]')
-STDPERIPH_LIBNAME = $(call lc,$(STM32F0_DEV))
-STDPERIPH_AR = lib/lib$(STDPERIPH_LIBNAME).a
+SPL_NAME = $(call lc,$(STM32F0_DEV))
+STDPERIPH_AR = SPL/lib$(SPL_NAME).a
 
 # Startup files
-SRCS += $(STDPERIPH_LIB)/Libraries/CMSIS/Device/ST/STM32F0xx/Source/Templates/TrueSTUDIO/startup_$(STDPERIPH_LIBNAME).s
-SRCS += $(STDPERIPH_LIB)/Libraries/CMSIS/Device/ST/STM32F0xx/Source/Templates/system_stm32f0xx.c
+SRCS += $(SPL_PATH)/Libraries/CMSIS/Device/ST/STM32F0xx/Source/Templates/TrueSTUDIO/startup_$(SPL_NAME).s
+SRCS += $(SPL_PATH)/Libraries/CMSIS/Device/ST/STM32F0xx/Source/Templates/system_stm32f0xx.c
 
 OBJS := $(SRCS:.c=.o)
 
 all: $(OUT_DIR) $(STDPERIPH_AR) $(TARGET)
 
 $(STDPERIPH_AR):
-	$(MAKE) -C lib STDPERIPH_LIB=$(STDPERIPH_LIB) STM32F0_DEV=$(STM32F0_DEV)
+	$(MAKE) -C SPL/ SPL_PATH=$(SPL_PATH) STM32F0_DEV=$(STM32F0_DEV)
 
 $(OUT_DIR):
 	mkdir $(OUT_DIR)
 
 $(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) -D$(STM32F0_DEV) $^ -o $(OUT_DIR)/$@.elf -L lib -l$(STDPERIPH_LIBNAME) -L$(LDSCRIPT_INC) -Tstm32f0.ld
+	$(CC) $(CFLAGS) -D$(STM32F0_DEV) $^ -o $(OUT_DIR)/$@.elf -L SPL/ -l$(SPL_NAME) -L$(LDSCRIPT_INC) -Tstm32f0.ld
 	$(OBJCOPY) -O binary $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.bin
 	$(OBJCOPY) -O ihex $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.hex
 	$(OBJDUMP) -St $(OUT_DIR)/$@.elf > $(OUT_DIR)/$@.lst
@@ -67,4 +67,4 @@ clean:
 	$(RM) -r ./$(OUT_DIR)
 
 distclean: clean
-	$(MAKE) -C lib/ clean
+	$(MAKE) -C SPL/ clean

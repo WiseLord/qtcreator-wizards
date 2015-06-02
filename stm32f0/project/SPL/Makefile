@@ -1,10 +1,10 @@
 STM32F0_DEV := %STM32F0Dev%
 
-STDPERIPH_LIB := %StdPeriph_Lib%
+SPL_PATH := %StdPeriph_Lib%
 
-CMSIS_LIB := $(STDPERIPH_LIB)/Libraries/CMSIS
-STDPERIPH_DRIVER := $(STDPERIPH_LIB)/Libraries/STM32F0xx_StdPeriph_Driver
-STM32F0XX_TEMPLATE := $(STDPERIPH_LIB)/Projects/STM32F0xx_StdPeriph_Templates/stm32f0xx_conf.h
+CMSIS_LIB := $(SPL_PATH)/Libraries/CMSIS
+STDPERIPH_DRIVER := $(SPL_PATH)/Libraries/STM32F0xx_StdPeriph_Driver
+STM32F0XX_TEMPLATE := stm32f0xx_conf.h
 
 TOOLCHAIN_PREFIX := %ToolChain%/bin/
 CC := $(TOOLCHAIN_PREFIX)arm-none-eabi-gcc
@@ -25,7 +25,8 @@ OBJS = $(SRCS:.c=.o)
 
 # Filename (lowercase) of objects archive
 lc = $(shell echo $1 | tr '[:upper:]' '[:lower:]')
-STDPERIPH_AR = lib$(call lc,$(STM32F0_DEV)).a
+SPL_NAME = $(call lc,$(STM32F0_DEV))
+STDPERIPH_AR = lib$(SPL_NAME).a
 
 %.o: $(STDPERIPH_DRIVER)/src/%.c
 	$(CC) $(CFLAGS) -D$(STM32F0_DEV) -c -o $@ $^
