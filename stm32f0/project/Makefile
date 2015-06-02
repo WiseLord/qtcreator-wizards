@@ -30,6 +30,7 @@ CFLAGS += -Wl,--gc-sections -Wl,-Map=$(OUT_DIR)/$(TARGET).map
 CFLAGS += -I $(CMSIS_LIB)/Device/ST/STM32F0xx/Include
 CFLAGS += -I $(CMSIS_LIB)/Include
 CFLAGS += -I $(STDPERIPH_DRIVER)/inc
+CFLAGS += -include $(STM32F0XX_TEMPLATE)
 
 # Filename (lowercase) of library from objects archive
 lc = $(shell echo $1 | tr '[:upper:]' '[:lower:]')
