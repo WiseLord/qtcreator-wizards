@@ -16,7 +16,6 @@
 		<file source="project.files"                                   target="%ProjectName%.files"/>
 
 		<file source="project/src/main.c"                              target="%ProjectName%/src/main.c" openeditor="true"/>
-		<file source="project/src/pins.h"                              target="%ProjectName%/src/pins.h"/>
 		<file source="project/Makefile"                                target="%ProjectName%/Makefile"/>        
 		<file source="project/.gitignore"                              target="%ProjectName%/.gitignore"/>        
 		<file source="project/SPL/stm32f0xx_conf.h"                    target="%ProjectName%/SPL/stm32f0xx_conf.h"/>        

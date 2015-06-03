@@ -1,3 +1,4 @@
 %ProjectName%/Makefile
 %ProjectName%/src/main.c
-%ProjectName%/src/pins.h
+%ProjectName%/SPL/Makefile
+%ProjectName%/SPL/stm32f0xx_conf.h

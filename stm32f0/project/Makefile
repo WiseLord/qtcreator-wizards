@@ -6,7 +6,7 @@ SPL_PATH := %StdPeriph_Lib%
 
 CMSIS_LIB := $(SPL_PATH)/Libraries/CMSIS
 STDPERIPH_DRIVER := $(SPL_PATH)/Libraries/STM32F0xx_StdPeriph_Driver
-STM32F0XX_TEMPLATE := SPL/stm32f0xx_conf.h
+
 LDSCRIPT_INC := extra/ldscripts
 OPENOCD_BOARD_DIR := /usr/share/openocd/scripts/board
 OPENOCD_PROC_FILE := extra/stm32f0-openocd.cfg
@@ -30,7 +30,7 @@ CFLAGS += -Wl,--gc-sections -Wl,-Map=$(OUT_DIR)/$(TARGET).map
 CFLAGS += -I $(CMSIS_LIB)/Device/ST/STM32F0xx/Include
 CFLAGS += -I $(CMSIS_LIB)/Include
 CFLAGS += -I $(STDPERIPH_DRIVER)/inc
-CFLAGS += -include $(STM32F0XX_TEMPLATE)
+CFLAGS += -I SPL/
 
 # Filename (lowercase) of library from objects archive
 lc = $(shell echo $1 | tr '[:upper:]' '[:lower:]')
@@ -52,7 +52,7 @@ $(OUT_DIR):
 	mkdir $(OUT_DIR)
 
 $(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) -D$(STM32F0_DEV) $^ -o $(OUT_DIR)/$@.elf -L SPL/ -l$(SPL_NAME) -L$(LDSCRIPT_INC) -Tstm32f0.ld
+	$(CC) $(CFLAGS) -DUSE_STDPERIPH_DRIVER -D$(STM32F0_DEV) $^ -o $(OUT_DIR)/$@.elf -L SPL/ -l$(SPL_NAME) -L$(LDSCRIPT_INC) -Tstm32f0.ld
 	$(OBJCOPY) -O binary $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.bin
 	$(OBJCOPY) -O ihex $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.hex
 	$(OBJDUMP) -St $(OUT_DIR)/$@.elf > $(OUT_DIR)/$@.lst
