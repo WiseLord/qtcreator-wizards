@@ -31,7 +31,7 @@
 	<fieldpagetitle>Parameters</fieldpagetitle>
 	<fieldpagetitle xml:lang="ru">Параметры</fieldpagetitle>
 	<fields>
-		<field mandatory="false" name="STM32F0Dev">
+		<field mandatory="false" name="STM32F0xxDev">
 			<fielddescription>STM32F0xx MCU:</fielddescription>
 			<fielddescription xml:lang="ru">STM32F0xx контроллер:</fielddescription>
 			<fieldcontrol class="QLineEdit" validator='^[^"]+$'

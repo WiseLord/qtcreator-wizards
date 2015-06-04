@@ -1,4 +1,4 @@
-STM32F0_DEV := %STM32F0Dev%
+STM32F0XX_DEV := %STM32F0xxDev%
 
 SPL_PATH := %StdPeriph_Lib%
 
@@ -24,11 +24,11 @@ OBJS = $(SRCS:.c=.o)
 
 # Filename (lowercase) of objects archive
 lc = $(shell echo $1 | tr '[:upper:]' '[:lower:]')
-SPL_NAME = $(call lc,$(STM32F0_DEV))
+SPL_NAME = $(call lc,$(STM32F0XX_DEV))
 STDPERIPH_AR = lib$(SPL_NAME).a
 
 %.o: $(STDPERIPH_DRIVER)/src/%.c
-	$(CC) $(CFLAGS) -DUSE_STDPERIPH_DRIVER -D$(STM32F0_DEV) -c -o $@ $^
+	$(CC) $(CFLAGS) -DUSE_STDPERIPH_DRIVER -D$(STM32F0XX_DEV) -c -o $@ $^
 
 all: $(OBJS)
 	$(AR) -r $(STDPERIPH_AR) $(OBJS)

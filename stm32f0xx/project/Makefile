@@ -1,6 +1,6 @@
 TARGET := %ProjectName%
 
-STM32F0_DEV := %STM32F0Dev%
+STM32F0XX_DEV := %STM32F0xxDev%
 
 SPL_PATH := %StdPeriph_Lib%
 
@@ -34,7 +34,7 @@ CFLAGS += -I SPL/
 
 # Filename (lowercase) of library from objects archive
 lc = $(shell echo $1 | tr '[:upper:]' '[:lower:]')
-SPL_NAME = $(call lc,$(STM32F0_DEV))
+SPL_NAME = $(call lc,$(STM32F0XX_DEV))
 STDPERIPH_AR = SPL/lib$(SPL_NAME).a
 
 # Startup files
@@ -46,13 +46,13 @@ OBJS := $(SRCS:.c=.o)
 all: $(OUT_DIR) $(STDPERIPH_AR) $(TARGET)
 
 $(STDPERIPH_AR):
-	$(MAKE) -C SPL/ SPL_PATH=$(SPL_PATH) STM32F0_DEV=$(STM32F0_DEV)
+	$(MAKE) -C SPL/ SPL_PATH=$(SPL_PATH) STM32F0XX_DEV=$(STM32F0XX_DEV)
 
 $(OUT_DIR):
 	mkdir $(OUT_DIR)
 
 $(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) -DUSE_STDPERIPH_DRIVER -D$(STM32F0_DEV) $^ -o $(OUT_DIR)/$@.elf -L SPL/ -l$(SPL_NAME) -L$(LDSCRIPT_INC) -Tstm32f0.ld
+	$(CC) $(CFLAGS) -DUSE_STDPERIPH_DRIVER -D$(STM32F0XX_DEV) $^ -o $(OUT_DIR)/$@.elf -L SPL/ -l$(SPL_NAME) -L$(LDSCRIPT_INC) -Tstm32f0.ld
 	$(OBJCOPY) -O binary $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.bin
 	$(OBJCOPY) -O ihex $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.hex
 	$(OBJDUMP) -St $(OUT_DIR)/$@.elf > $(OUT_DIR)/$@.lst
