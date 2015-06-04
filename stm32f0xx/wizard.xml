@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <wizard version="1" kind="project" class="" firstpage="10"
-		category="A.MCU" id="B.STM32F0">
+		category="A.MCU" id="B.STM32F0xx">
 	<icon>stm32.jpg</icon>
 	<description>Creates an STM32F0xx project based on the Makefile</description>
-	<description xml:lang="ru">Создание проекта для STM32F0 на базе Makefile</description>
+	<description xml:lang="ru">Создание проекта для STM32F0xx на базе Makefile</description>
 	<displaycategory>Microcontrollers</displaycategory>
 	<displaycategory xml:lang="ru">Микроконтроллеры</displaycategory>
 	<displayname>STM32F0xx Project</displayname>;
