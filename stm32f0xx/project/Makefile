@@ -9,7 +9,7 @@ STDPERIPH_DRIVER := $(SPL_PATH)/Libraries/STM32F0xx_StdPeriph_Driver
 
 LDSCRIPT_INC := extra/ldscripts
 OPENOCD_BOARD_DIR := /usr/share/openocd/scripts/board
-OPENOCD_PROC_FILE := extra/stm32f0-openocd.cfg
+OPENOCD_PROC_FILE := extra/stm32f0xx-openocd.cfg
 OUT_DIR := out
 
 vpath %.c src
@@ -52,7 +52,7 @@ $(OUT_DIR):
 	mkdir $(OUT_DIR)
 
 $(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) -DUSE_STDPERIPH_DRIVER -D$(STM32F0XX_DEV) $^ -o $(OUT_DIR)/$@.elf -L SPL/ -l$(SPL_NAME) -L$(LDSCRIPT_INC) -Tstm32f0.ld
+	$(CC) $(CFLAGS) -DUSE_STDPERIPH_DRIVER -D$(STM32F0XX_DEV) $^ -o $(OUT_DIR)/$@.elf -L SPL/ -l$(SPL_NAME) -L$(LDSCRIPT_INC) -T$(STM32F0XX_DEV)_FLASH.ld
 	$(OBJCOPY) -O binary $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.bin
 	$(OBJCOPY) -O ihex $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.hex
 	$(OBJDUMP) -St $(OUT_DIR)/$@.elf > $(OUT_DIR)/$@.lst
