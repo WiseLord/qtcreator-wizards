@@ -1,6 +1,6 @@
-#include <stm32f0xx.h>
+#include <stm32f10x.h>
 
-GPIO_InitTypeDef ledG, ledB;
+GPIO_InitTypeDef led1, led3;
 
 void SysTick_Handler(void) {
 	static uint16_t tick = 0;
@@ -10,36 +10,32 @@ void SysTick_Handler(void) {
 
 	switch (tick) {
 	case 0:
-		GPIO_ResetBits(GPIOC, ledB.GPIO_Pin);
-		GPIO_SetBits(GPIOC, ledG.GPIO_Pin);
+		GPIO_ResetBits(GPIOA, led1.GPIO_Pin);
+		GPIO_SetBits(GPIOA, led3.GPIO_Pin);
 		break;
 	case 10:
-		GPIO_ResetBits(GPIOC, ledG.GPIO_Pin);
-		GPIO_SetBits(GPIOC, ledB.GPIO_Pin);
+		GPIO_ResetBits(GPIOA, led3.GPIO_Pin);
+		GPIO_SetBits(GPIOA, led1.GPIO_Pin);
 		break;
 	}
 }
 
 void hwInit()
 {
-	// Enable port C
-	RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
+	// Enable port A and B
+	RCC->APB2ENR |= RCC_APB2Periph_GPIOA;
 
 	// Init leds
-	ledB.GPIO_Pin = GPIO_Pin_8;
-	ledB.GPIO_Mode = GPIO_Mode_OUT;
-	ledB.GPIO_Speed = GPIO_Speed_2MHz;
-	ledB.GPIO_OType = GPIO_OType_PP;
-	ledB.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	led1.GPIO_Pin = GPIO_Pin_2;
+	led1.GPIO_Mode = GPIO_Mode_Out_PP;
+	led1.GPIO_Speed = GPIO_Speed_2MHz;
 
-	ledG.GPIO_Pin = GPIO_Pin_9;
-	ledG.GPIO_Mode = GPIO_Mode_OUT;
-	ledG.GPIO_Speed = GPIO_Speed_2MHz;
-	ledG.GPIO_OType = GPIO_OType_PP;
-	ledG.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	led3.GPIO_Pin = GPIO_Pin_3;
+	led3.GPIO_Mode = GPIO_Mode_Out_PP;
+	led3.GPIO_Speed = GPIO_Speed_2MHz;
 
-	GPIO_Init(GPIOC, &ledB);
-	GPIO_Init(GPIOC, &ledG);
+	GPIO_Init(GPIOA, &led1);
+	GPIO_Init(GPIOA, &led3);
 
 	return;
 }
@@ -56,3 +52,5 @@ int main(void)
 
 	return 0;
 }
+
+
