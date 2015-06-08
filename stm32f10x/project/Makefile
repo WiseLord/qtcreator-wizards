@@ -16,7 +16,7 @@ vpath %.c src
 SRCS := $(notdir $(wildcard src/*.c))
 
 OPENOCD := openocd
-TOOLCHAIN_PREFIX := %ToolChain%/bin/
+TOOLCHAIN_PREFIX := %ToolChain%/
 CC := $(TOOLCHAIN_PREFIX)arm-none-eabi-gcc
 OBJCOPY := $(TOOLCHAIN_PREFIX)arm-none-eabi-objcopy
 OBJDUMP := $(TOOLCHAIN_PREFIX)arm-none-eabi-objdump

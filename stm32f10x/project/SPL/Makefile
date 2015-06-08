@@ -5,7 +5,7 @@ SPL_PATH := %StdPeriph_Lib%
 CMSIS_LIB := $(SPL_PATH)/Libraries/CMSIS
 STDPERIPH_DRIVER := $(SPL_PATH)/Libraries/STM32F10x_StdPeriph_Driver
 
-TOOLCHAIN_PREFIX := %ToolChain%/bin/
+TOOLCHAIN_PREFIX := %ToolChain%/
 CC := $(TOOLCHAIN_PREFIX)arm-none-eabi-gcc
 AR := $(TOOLCHAIN_PREFIX)arm-none-eabi-ar
 
