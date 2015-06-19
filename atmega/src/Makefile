@@ -44,7 +44,7 @@ clean:
 	rm -rf $(OBJDIR)
 
 flash: $(TARG)
-	$(AVRDUDE) -p $(MCU) -U flash:w:flash/$(TARG).hex:i
+	$(AVRDUDE) $(AD_CMDLINE) -U flash:w:flash/$(TARG).hex:i
 
 fuse:
-	$(AVRDUDE) -p $(MCU) %FUSEBIT_STRING%
+	$(AVRDUDE) $(AD_CMDLINE) %FUSEBIT_STRING%
