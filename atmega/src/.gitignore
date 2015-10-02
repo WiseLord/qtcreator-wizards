@@ -1,2 +1,4 @@
-obj/*.*
-flash/*.*
+*.d
+*.elf
+*.hex
+*.o

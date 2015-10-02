@@ -1,34 +1,41 @@
-TARG = %ProjectName%
+# Output file name
+TARG     = %ProjectName%
 
-MCU = %MCU%
-F_CPU = %F_CPU%
+# MCU name and frequency
+MCU      = %MCU%
+F_CPU    = %F_CPU%
 
 # Source files
-SRCS = $(wildcard *.c)
+SRCS     = $(wildcard *.c)
 
 # Build directory
 BUILDDIR = build
 
 # Compiler options
 OPTIMIZE = -Os -mcall-prologues -fshort-enums -ffunction-sections -fdata-sections
-DEBUG = -g -Wall -Werror
-CFLAGS = $(DEBUG) -lm $(OPTIMIZE) -mmcu=$(MCU) -DF_CPU=$(F_CPU)
-CFLAGS += -MMD -MP -MT $(BUILDDIR)/$(*F).o -MF $(BUILDDIR)/$(@F).d
-LDFLAGS = $(DEBUG) -mmcu=$(MCU) -Wl,-gc-sections
+DEBUG    = -g -Wall -Werror
+DEPS     = -MMD -MP -MT $(BUILDDIR)/$(*F).o -MF $(BUILDDIR)/$(*D)/$(*F).d
+CFLAGS   = $(DEBUG) -lm $(OPTIMIZE) $(DEPS) -mmcu=$(MCU) -DF_CPU=$(F_CPU)
+LDFLAGS  = $(DEBUG) -mmcu=$(MCU) -Wl,-gc-sections
 
 # AVR toolchain and flasher
 CC       = avr-gcc
 OBJCOPY  = avr-objcopy
 
+# AVRDude parameters
 AVRDUDE  = avrdude
-AD_MCU = -p $(MCU)
+AD_MCU   = -p $(MCU)
 #AD_PROG = -c stk500v2
 #AD_PORT = -P avrdoper
 
-AD_CMDLINE = $(AD_MCU) $(AD_PROG) $(AD_PORT) -V
+AD_CMD   = $(AD_MCU) $(AD_PROG) $(AD_PORT) -V
 
-OBJS = $(addprefix $(BUILDDIR)/, $(SRCS:.c=.o))
-ELF = $(BUILDDIR)/$(TARG).elf
+# Build objects
+OBJS     = $(addprefix $(BUILDDIR)/, $(SRCS:.c=.o))
+ELF      = $(BUILDDIR)/$(TARG).elf
+
+# Dependencies
+-include $(OBJS:.o=.d)
 
 all: $(ELF) size
 
@@ -48,10 +55,7 @@ clean:
 	rm -rf $(BUILDDIR)
 
 flash: $(TARG)
-	$(AVRDUDE) $(AD_CMDLINE) -U flash:w:flash/$(TARG).hex:i
+	$(AVRDUDE) $(AD_CMD) -U flash:w:flash/$(TARG).hex:i
 
 fuse:
-	$(AVRDUDE) $(AD_CMDLINE) %FUSEBIT_STRING%
-
-# Other dependencies
--include $(wildcard $(BUILDDIR)/*.d)
+	$(AVRDUDE) $(AD_CMD) %FUSEBIT_STRING%
