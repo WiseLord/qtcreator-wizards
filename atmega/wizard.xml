@@ -19,6 +19,7 @@
 		<file source="src/pins.h"       target="src/pins.h"/>        
 		<file source="src/Makefile"     target="src/Makefile"/>        
 		<file source="src/size.sh"      target="src/size.sh"/>        
+		<file source="src/.gitignore"   target="src/.gitignore"/>        
 	</files>
 
 	<!-- Create a 2nd wizard page with custom parameters -->
