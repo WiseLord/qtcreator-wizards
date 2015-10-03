@@ -51,11 +51,14 @@ $(BUILDDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
+.PHONY: clean
 clean:
 	rm -rf $(BUILDDIR)
 
-flash: $(TARG)
+.PHONY: flash
+flash: $(ELF)
 	$(AVRDUDE) $(AD_CMD) -U flash:w:flash/$(TARG).hex:i
 
+.PHONY: fuse
 fuse:
 	$(AVRDUDE) $(AD_CMD) %FUSEBIT_STRING%
