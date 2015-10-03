@@ -16,7 +16,7 @@ OPTIMIZE = -Os -mcall-prologues -fshort-enums -ffunction-sections -fdata-section
 DEBUG    = -g -Wall -Werror
 DEPS     = -MMD -MP -MT $(BUILDDIR)/$(*F).o -MF $(BUILDDIR)/$(*D)/$(*F).d
 CFLAGS   = $(DEBUG) -lm $(OPTIMIZE) $(DEPS) -mmcu=$(MCU) -DF_CPU=$(F_CPU)
-LDFLAGS  = $(DEBUG) -mmcu=$(MCU) -Wl,-gc-sections
+LDFLAGS  = $(DEBUG) -mmcu=$(MCU) -Wl,-gc-sections -mrelax
 
 # AVR toolchain and flasher
 CC       = avr-gcc
