@@ -21,6 +21,7 @@ LDFLAGS  = $(DEBUG) -mmcu=$(MCU) -Wl,-gc-sections -mrelax
 # AVR toolchain and flasher
 CC       = avr-gcc
 OBJCOPY  = avr-objcopy
+OBJDUMP  = avr-objdump
 
 # AVRDude parameters
 AVRDUDE  = avrdude
@@ -43,6 +44,7 @@ $(ELF): $(OBJS)
 	@mkdir -p $(BUILDDIR) flash
 	$(CC) $(LDFLAGS) -o $(ELF) $(OBJS) -lm
 	$(OBJCOPY) -O ihex -R .eeprom -R .nwram $(ELF) flash/$(TARG).hex
+	$(OBJDUMP) -h -S $(ELF) > $(BUILDDIR)/$(TARG).lss
 
 size:
 	@sh ./size.sh $(ELF)
