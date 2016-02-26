@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wizard version="1" kind="project" class="" firstpage="10"
+		category="A.MCU" id="B.STM32F103x8">
+	<icon>stm32.jpg</icon>
+	<description>Creates an STM32F103x8 project based on the Makefile</description>
+	<description xml:lang="ru">Создание проекта для STM32F103x8 на базе Makefile</description>
+	<displaycategory>Microcontrollers</displaycategory>
+	<displaycategory xml:lang="ru">Микроконтроллеры</displaycategory>
+	<displayname>STM32F103x8 Project</displayname>;
+	<displayname xml:lang="ru">Проект на STM32F103x8</displayname>;
+
+	<!-- Create a 2nd wizard page with custom parameters -->
+	<fieldpagetitle>Parameters</fieldpagetitle>
+	<fieldpagetitle xml:lang="ru">Параметры</fieldpagetitle>
+
+	<fields>
+		<field mandatory="true" name="StdPeriph_Lib">
+			<fielddescription>StdPeriph library dir:</fielddescription>
+			<fielddescription xml:lang="ru">Библиотека StdPeriph:</fielddescription>
+			<fieldcontrol class="Utils::PathChooser"
+					defaulttext="/home/ARM/STM32F10x_StdPeriph_Lib_V3.5.0" />
+		</field>
+		<field mandatory="true" name="ToolChain">
+			<fielddescription>ToolChain dir:</fielddescription>
+			<fielddescription xml:lang="ru">Каталог с тулчейном:</fielddescription>
+			<fieldcontrol class="Utils::PathChooser"
+					defaulttext="/home/ARM/gcc-arm-none-eabi-4_8-2014q2/bin" />
+		</field>
+	</fields>
+
+	<files>
+		<file source="project.creator"                                target="%ProjectName%.creator" openproject="true"/>
+		<file source="project.includes"                               target="%ProjectName%.includes"/>
+		<file source="project.config"                                 target="%ProjectName%.config"/>
+		<file source="project.files"                                  target="%ProjectName%.files"/>
+
+		<file source="project/SPL/stm32f10x_conf.h"                   target="%ProjectName%/SPL/stm32f10x_conf.h"/>
+		<file source="project/SPL/Makefile"                           target="%ProjectName%/SPL/Makefile"/>
+		<file source="project/SPL/.gitignore"                         target="%ProjectName%/SPL/.gitignore"/>
+		
+		<file source="project/extra/stm32f10x-openocd.cfg"            target="%ProjectName%/extra/stm32f10x-openocd.cfg"/>
+		<file source="project/extra/ldscripts/STM32F10X_MD_FLASH.ld"  target="%ProjectName%/extra/ldscripts/STM32F10X_MD_FLASH.ld"/>
+		<file source="project/extra/src/syscalls.c"                   target="%ProjectName%/extra/src/syscalls.c"/>
+		<file source="project/extra/src/syscalls_hal.s"               target="%ProjectName%/extra/src/syscalls_hal.s"/>
+		<file source="project/extra/src/startup_stm32f10x_md.s"       target="%ProjectName%/extra/src/startup_stm32f10x_md.s"/>
+
+		<file source="project/src/main.c"                             target="%ProjectName%/src/main.c" openeditor="true"/>
+		<file source="project/Makefile"                               target="%ProjectName%/Makefile"/>
+		<file source="project/.gitignore"                             target="%ProjectName%/.gitignore"/>
+	</files>
+
+</wizard>
