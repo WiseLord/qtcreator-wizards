@@ -7,8 +7,8 @@
 	<description xml:lang="ru">Создание проекта для STM32F0xx на базе Makefile</description>
 	<displaycategory>Microcontrollers</displaycategory>
 	<displaycategory xml:lang="ru">Микроконтроллеры</displaycategory>
-	<displayname>STM32F0xx Project</displayname>;
-	<displayname xml:lang="ru">Проект на STM32F0xx</displayname>;
+	<displayname>STM32F0xx Project (Experimental)</displayname>;
+	<displayname xml:lang="ru">Проект на STM32F0xx (Экспериментально)</displayname>;
 
 	<!-- Create a 2nd wizard page with custom parameters -->
 	<fieldpagetitle>Parameters</fieldpagetitle>

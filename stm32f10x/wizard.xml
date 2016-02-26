@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <wizard version="1" kind="project" class="" firstpage="10"
-		category="A.MCU" id="C.STM32F10x">
+		category="A.MCU" id="Z.STM32F10x">
 	<icon>stm32.jpg</icon>
 	<description>Creates an STM32F10x project based on the Makefile</description>
 	<description xml:lang="ru">Создание проекта для STM32F10x на базе Makefile</description>
 	<displaycategory>Microcontrollers</displaycategory>
 	<displaycategory xml:lang="ru">Микроконтроллеры</displaycategory>
-	<displayname>STM32F10x Project</displayname>;
-	<displayname xml:lang="ru">Проект на STM32F10x</displayname>;
+	<displayname>STM32F10x Project (Experimental)</displayname>;
+	<displayname xml:lang="ru">Проект на STM32F10x (Экспериментально)</displayname>;
 
 	<!-- Create a 2nd wizard page with custom parameters -->
 	<fieldpagetitle>Parameters</fieldpagetitle>
