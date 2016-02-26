@@ -47,7 +47,6 @@ int main(void)
 	SysTick_Config(SystemCoreClock/10);
 
 	while(1) {
-		;
 	}
 
 	return 0;

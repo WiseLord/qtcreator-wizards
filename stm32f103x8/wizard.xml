@@ -30,24 +30,24 @@
 	</fields>
 
 	<files>
-		<file source="project.creator"                                target="%ProjectName%.creator" openproject="true"/>
-		<file source="project.includes"                               target="%ProjectName%.includes"/>
-		<file source="project.config"                                 target="%ProjectName%.config"/>
-		<file source="project.files"                                  target="%ProjectName%.files"/>
+		<file source="project.creator"                      target="%ProjectName%.creator" openproject="true"/>
+		<file source="project.includes"                     target="%ProjectName%.includes"/>
+		<file source="project.config"                       target="%ProjectName%.config"/>
+		<file source="project.files"                        target="%ProjectName%.files"/>
 
-		<file source="project/SPL/stm32f10x_conf.h"                   target="%ProjectName%/SPL/stm32f10x_conf.h"/>
-		<file source="project/SPL/Makefile"                           target="%ProjectName%/SPL/Makefile"/>
-		<file source="project/SPL/.gitignore"                         target="%ProjectName%/SPL/.gitignore"/>
+		<file source="SPL/stm32f10x_conf.h"                 target="SPL/stm32f10x_conf.h"/>
+		<file source="SPL/Makefile"                         target="SPL/Makefile"/>
+		<file source="SPL/.gitignore"                       target="SPL/.gitignore"/>
 		
-		<file source="project/extra/stm32f10x-openocd.cfg"            target="%ProjectName%/extra/stm32f10x-openocd.cfg"/>
-		<file source="project/extra/ldscripts/STM32F10X_MD_FLASH.ld"  target="%ProjectName%/extra/ldscripts/STM32F10X_MD_FLASH.ld"/>
-		<file source="project/extra/src/syscalls.c"                   target="%ProjectName%/extra/src/syscalls.c"/>
-		<file source="project/extra/src/syscalls_hal.s"               target="%ProjectName%/extra/src/syscalls_hal.s"/>
-		<file source="project/extra/src/startup_stm32f10x_md.s"       target="%ProjectName%/extra/src/startup_stm32f10x_md.s"/>
+		<file source="extra/stm32f10x-openocd.cfg"          target="extra/stm32f10x-openocd.cfg"/>
+		<file source="extra/ldscripts/stm32f103x8_flash.ld" target="extra/ldscripts/stm32f103x8_flash.ld"/>
+		<file source="extra/src/syscalls.c"                 target="extra/src/syscalls.c"/>
+		<file source="extra/src/syscalls_hal.s"             target="extra/src/syscalls_hal.s"/>
+		<file source="extra/src/startup_stm32f10x_md.s"     target="extra/src/startup_stm32f10x_md.s"/>
 
-		<file source="project/src/main.c"                             target="%ProjectName%/src/main.c" openeditor="true"/>
-		<file source="project/Makefile"                               target="%ProjectName%/Makefile"/>
-		<file source="project/.gitignore"                             target="%ProjectName%/.gitignore"/>
+		<file source="src/main.c"                           target="src/main.c" openeditor="true"/>
+		<file source="Makefile"                             target="Makefile"/>
+		<file source=".gitignore"                           target=".gitignore"/>
 	</files>
 
 </wizard>

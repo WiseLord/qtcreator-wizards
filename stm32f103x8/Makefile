@@ -55,7 +55,7 @@ $(OUT_DIR):
 	mkdir $(OUT_DIR)
 
 $(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) -DUSE_STDPERIPH_DRIVER -D$(STM32F10X_DEV) $^ -o $(OUT_DIR)/$@.elf -L SPL/ -l$(SPL_NAME) -L$(LDSCRIPT_INC) -T$(STM32F10X_DEV)_FLASH.ld
+	$(CC) $(CFLAGS) -DUSE_STDPERIPH_DRIVER -D$(STM32F10X_DEV) $^ -o $(OUT_DIR)/$@.elf -L SPL/ -l$(SPL_NAME) -L$(LDSCRIPT_INC) -Tstm32f103x8_flash.ld
 	$(OBJCOPY) -O binary $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.bin
 	$(OBJCOPY) -O ihex $(OUT_DIR)/$@.elf $(OUT_DIR)/$@.hex
 	$(OBJDUMP) -St $(OUT_DIR)/$@.elf > $(OUT_DIR)/$@.lst
