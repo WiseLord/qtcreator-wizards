@@ -1,6 +1,6 @@
 #include <stm32f10x.h>
 
-GPIO_InitTypeDef led1, led3;
+GPIO_InitTypeDef led;
 
 void SysTick_Handler(void) {
 	static uint16_t tick = 0;
@@ -10,12 +10,10 @@ void SysTick_Handler(void) {
 
 	switch (tick) {
 	case 0:
-		GPIO_ResetBits(GPIOA, led1.GPIO_Pin);
-		GPIO_SetBits(GPIOA, led3.GPIO_Pin);
+		GPIO_ResetBits(GPIOC, led.GPIO_Pin);
 		break;
 	case 10:
-		GPIO_ResetBits(GPIOA, led3.GPIO_Pin);
-		GPIO_SetBits(GPIOA, led1.GPIO_Pin);
+		GPIO_SetBits(GPIOC, led.GPIO_Pin);
 		break;
 	}
 }
@@ -23,19 +21,14 @@ void SysTick_Handler(void) {
 void hwInit()
 {
 	// Enable port A
-	RCC->APB2ENR |= RCC_APB2Periph_GPIOA;
+	RCC->APB2ENR |= RCC_APB2Periph_GPIOC;
 
-	// Init leds
-	led1.GPIO_Pin = GPIO_Pin_2;
-	led1.GPIO_Mode = GPIO_Mode_Out_PP;
-	led1.GPIO_Speed = GPIO_Speed_2MHz;
+	// Init led
+	led.GPIO_Pin = GPIO_Pin_13;
+	led.GPIO_Mode = GPIO_Mode_Out_PP;
+	led.GPIO_Speed = GPIO_Speed_2MHz;
 
-	led3.GPIO_Pin = GPIO_Pin_3;
-	led3.GPIO_Mode = GPIO_Mode_Out_PP;
-	led3.GPIO_Speed = GPIO_Speed_2MHz;
-
-	GPIO_Init(GPIOA, &led1);
-	GPIO_Init(GPIOA, &led3);
+	GPIO_Init(GPIOC, &led);
 
 	return;
 }

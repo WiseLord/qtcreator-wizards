@@ -8,8 +8,7 @@ CMSIS_LIB := $(SPL_PATH)/Libraries/CMSIS
 STDPERIPH_DRIVER := $(SPL_PATH)/Libraries/STM32F10x_StdPeriph_Driver
 
 LDSCRIPT_INC := extra/ldscripts
-OPENOCD_BOARD_DIR := /usr/share/openocd/scripts/board
-OPENOCD_PROC_FILE := extra/stm32f0-openocd.cfg
+OPENOCD_PROC_FILE := extra/stm32f10x-openocd.cfg
 OUT_DIR := out
 
 vpath %.c src
@@ -62,10 +61,13 @@ $(TARGET): $(SRCS)
 	$(SIZE) $(OUT_DIR)/$@.elf
 
 flash: all
-	$(OPENOCD) -f $(OPENOCD_BOARD_DIR)/stm32f0discovery.cfg -f $(OPENOCD_PROC_FILE) -c "stm_flash `pwd`/$(OUT_DIR)/$(TARGET).bin" -c shutdown
+	#$(OPENOCD) -f $(OPENOCD_PROC_FILE) -c "stm_flash `pwd`/$(OUT_DIR)/$(TARGET).bin" -c shutdown
+	stm32flash -w "`pwd`/$(OUT_DIR)/$(TARGET).bin" /dev/ttyUSB0
+	stm32flash -g 0x00000000 /dev/ttyUSB0
 
 erase:
-	$(OPENOCD) -f $(OPENOCD_BOARD_DIR)/stm32f0discovery.cfg -f $(OPENOCD_PROC_FILE) -c "stm_erase" -c shutdown
+	#$(OPENOCD) -f $(OPENOCD_PROC_FILE) -c "stm_erase" -c shutdown
+	stm32flash -o /dev/ttyUSB0
 
 clean:
 	$(RM) -r ./$(OUT_DIR)
