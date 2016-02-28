@@ -25,7 +25,7 @@
 			<fielddescription>ToolChain directory:</fielddescription>
 			<fielddescription xml:lang="ru">Каталог с тулчейном:</fielddescription>
 			<fieldcontrol class="Utils::PathChooser"
-					defaulttext="/usr/arm-none-eabi" />
+					defaulttext="/home/ARM/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi" />
 		</field>
 	</fields>
 
