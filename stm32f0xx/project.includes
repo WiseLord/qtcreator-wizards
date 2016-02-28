@@ -1,8 +1,0 @@
-%StdPeriph_Lib%/Libraries/CMSIS/Device/ST/STM32F0xx/Include
-%StdPeriph_Lib%/Libraries/CMSIS/Include
-%StdPeriph_Lib%/Libraries/STM32F0xx_StdPeriph_Driver/inc
-
-%ToolChain%/../arm-none-eabi/include
-
-%ProjectName%/SPL
-%ProjectName%/src
