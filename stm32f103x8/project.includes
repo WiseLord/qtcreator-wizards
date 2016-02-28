@@ -2,7 +2,7 @@
 %StdPeriph_Lib%/Libraries/CMSIS/CM3/CoreSupport
 %StdPeriph_Lib%/Libraries/STM32F10x_StdPeriph_Driver/inc
 
-%ToolChain%/../arm-none-eabi/include
+%ToolChain%/include
 
 %ProjectName%/SPL
 %ProjectName%/src
