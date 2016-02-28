@@ -11,7 +11,7 @@ CMSIS_LIB  := $(SPL_PATH)/Libraries/CMSIS
 SPL_DRIVER := $(SPL_PATH)/Libraries/STM32F0xx_StdPeriph_Driver
 
 OPENOCD    := openocd
-OOCD_CFG   := extra/stm32f0discovery-openocd.cfg
+OOCD_CFG   := extra/stm32f0discovery_openocd.cfg
 
 OUT_DIR    := out
 
