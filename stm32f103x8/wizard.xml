@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <wizard version="1" kind="project" class="" firstpage="10"
-		category="A.MCU" id="B.STM32F103x8">
+		category="A.MCU" id="A.STM32F103x8">
 	<icon>stm32.jpg</icon>
 	<description>Creates an STM32F103x8 project based on the Makefile</description>
 	<description xml:lang="ru">Создание проекта для STM32F103x8 на базе Makefile</description>
