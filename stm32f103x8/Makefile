@@ -11,7 +11,7 @@ CMSIS_LIB  := $(SPL_PATH)/Libraries/CMSIS
 SPL_DRIVER := $(SPL_PATH)/Libraries/STM32F10x_StdPeriph_Driver
 
 OPENOCD    := openocd
-OOCD_CFG   := extra/stm32f10x_openocd.cfg
+OOCD_CFG   := extra/stm32f103x8_openocd.cfg
 
 OUT_DIR    := out
 
@@ -32,8 +32,7 @@ CFLAGS     += -I $(CMSIS_LIB)/CM3/CoreSupport
 CFLAGS     += -I $(SPL_DRIVER)/inc
 CFLAGS     += -I SPL/
 
-vpath %.c src
-SRCS := $(notdir $(wildcard src/*.c))
+SRCS      := $(wildcard src/*.c)
 
 SRCS      += $(CMSIS_LIB)/CM3/CoreSupport/core_cm3.c
 SRCS      += $(CMSIS_LIB)/CM3/DeviceSupport/ST/STM32F10x/system_stm32f10x.c
@@ -59,13 +58,13 @@ $(TARGET): $(SRCS)
 	$(SIZE) $(OUT_DIR)/$@.elf
 
 flash: all
-	#$(OPENOCD) -f $(OOCD_CFG) -c "stm_flash `pwd`/$(OUT_DIR)/$(TARGET).bin" -c shutdown
-	stm32flash -w "`pwd`/$(OUT_DIR)/$(TARGET).bin" /dev/ttyUSB0
-	stm32flash -g 0x00000000 /dev/ttyUSB0
+	$(OPENOCD) -f $(OOCD_CFG) -c "stm_flash `pwd`/$(OUT_DIR)/$(TARGET).bin" -c shutdown
+	#stm32flash -w "`pwd`/$(OUT_DIR)/$(TARGET).bin" /dev/ttyUSB0
+	#stm32flash -g 0x00000000 /dev/ttyUSB0
 
 erase:
-	#$(OPENOCD) -f $(OOCD_CFG) -c "stm_erase" -c shutdown
-	stm32flash -o /dev/ttyUSB0
+	$(OPENOCD) -f $(OOCD_CFG) -c "stm_erase" -c shutdown
+	#stm32flash -o /dev/ttyUSB0
 
 clean:
 	$(RM) -r ./$(OUT_DIR)
