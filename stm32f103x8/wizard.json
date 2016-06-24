@@ -1,13 +1,13 @@
 {
 	"version": 1,
-    "supportedProjectTypes": ["GenericProjectManager.GenericProject"],
+	"supportedProjectTypes": ["GenericProjectManager.GenericProject"],
 	"id": "B.STM32F103x8",
 	"category": "A.MCU",
 	"trDescription": "Creates an STM32F103x8 project based on the Makefile.",
 	"trDisplayName": "STM32F103x8 Project",
 	"trDisplayCategory": "Microcontrollers",
 	"icon": "stm32.jpg",
-    "enabled": "true",
+	"enabled": "true",
 
 	"options":
 	[
@@ -23,9 +23,9 @@
 		{
 			"trDisplayName": "Project parameters",
 			"trShortTitle": "Parameters",
-            "typeId": "Fields",
-            "data":
-            [
+			"typeId": "Fields",
+			"data":
+			[
 				{
 					"name": "StdPeriph_Lib",
 					"trDisplayName": "SPL directory:",
@@ -48,7 +48,7 @@
 						"path": "/home/ARM/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi"
 					}
 				}
-            ]
+			]
 		}
 	],
 
