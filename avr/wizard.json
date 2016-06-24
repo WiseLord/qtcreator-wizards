@@ -1,0 +1,93 @@
+{
+	"version": 1,
+	"supportedProjectTypes": ["GenericProjectManager.GenericProject"],
+	"id": "B.AVR_8bit",
+	"category": "A.MCU",
+	"trDescription": "Creates an ATmega/ATtiny project based on the Makefile.",
+	"trDisplayName": "ATmega/ATtiny Project",
+	"trDisplayCategory": "Microcontrollers",
+	"icon": "atmega168.jpg",
+	"enabled": "true",
+
+	"options":
+	[
+	],
+
+	"pages" :
+	[
+		{
+			"trDisplayName": "Project Location",
+			"trShortTitle": "Location",
+			"typeId": "Project"
+		},
+		{
+			"trDisplayName": "Project parameters",
+			"trShortTitle": "Parameters",
+			"typeId": "Fields",
+			"data":
+			[
+				{
+					"name": "MCU",
+					"trDisplayName": "AVR MCU:",
+					"type": "LineEdit",
+					"data":
+					{
+						"trText": "atmega8",
+						"validator": "^[^\"]+$"
+					}
+				},
+				{
+					"name": "F_CPU",
+					"trDisplayName": "CPU freq. [Hz]:",
+					"type": "LineEdit",
+					"data":
+					{
+						"trText": "8000000",
+						"validator": "^[0-9]{5,8}$"
+					}
+				},
+				{
+					"name": "AVR_INCLUDE_DIR",
+					"trDisplayName": "Headers dir:",
+					"type": "PathChooser",
+					"mandatory": true,
+					"data":
+					{
+						"kind": "existingDirectory",
+						"path": "/usr/avr/include"
+					}
+				},
+				{
+					"name": "FUSEBIT_STRING",
+					"trDisplayName": "Avrdude FUSEs:",
+					"type": "LineEdit",
+					"data":
+					{
+						"trText": "-U lfuse:w:0xE4:m -U hfuse:w:0xC9:m",
+						"validator": "^[^\"]+$"
+					}
+				}
+			]
+		}
+	],
+
+	"generators" :
+	[
+		{
+			"typeId": "File",
+			"data":
+			[
+				{ "source": "project.creator", "target": "%{ProjectName}.creator", "openAsProject": true },
+				{ "source": "project.includes", "target": "%{ProjectName}.includes" },
+				{ "source": "project.config", "target": "%{ProjectName}.config" },
+				{ "source": "project.files", "target": "%{ProjectName}.files" },
+
+				{ "source": "main.c", "openInEditor": true },
+				{ "source": "pins.h" },
+				{ "source": "Makefile" },
+				{ "source": "size.sh" },
+				{ "source": ".gitignore" }
+			]
+		}
+	]
+}

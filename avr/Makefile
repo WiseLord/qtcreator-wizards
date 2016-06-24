@@ -1,9 +1,9 @@
 # Output file name
-TARG     = %ProjectName%
+TARG     = %{ProjectName}
 
 # MCU name and frequency
-MCU      = %MCU%
-F_CPU    = %F_CPU%
+MCU      = %{MCU}
+F_CPU    = %{F_CPU}
 
 # Source files
 SRCS     = $(wildcard *.c)
