@@ -1,0 +1,79 @@
+{
+	"version": 1,
+    "supportedProjectTypes": ["GenericProjectManager.GenericProject"],
+	"id": "B.STM32F103x8",
+	"category": "A.MCU",
+	"trDescription": "Creates an STM32F103x8 project based on the Makefile.",
+	"trDisplayName": "STM32F103x8 Project",
+	"trDisplayCategory": "Microcontrollers",
+	"icon": "stm32.jpg",
+    "enabled": "true",
+
+	"options":
+	[
+	],
+
+	"pages" :
+	[
+		{
+			"trDisplayName": "Project Location",
+			"trShortTitle": "Location",
+			"typeId": "Project"
+		},
+		{
+			"trDisplayName": "Project parameters",
+			"trShortTitle": "Parameters",
+            "typeId": "Fields",
+            "data":
+            [
+				{
+					"name": "StdPeriph_Lib",
+					"trDisplayName": "SPL directory:",
+					"type": "PathChooser",
+					"mandatory": true,
+					"data":
+					{
+						"kind": "existingDirectory",
+						"path": "/home/ARM/STM32F10x_StdPeriph_Lib_V3.5.0"
+					}
+				},
+				{
+					"name": "ToolChain",
+					"trDisplayName": "ToolChain directory",
+					"type": "PathChooser",
+					"mandatory": true,
+					"data":
+					{
+						"kind": "existingDirectory",
+						"path": "/home/ARM/gcc-arm-none-eabi-5_2-2015q4/arm-none-eabi"
+					}
+				}
+            ]
+		}
+	],
+
+	"generators" :
+	[
+		{
+			"typeId": "File",
+			"data":
+			[
+				{ "source": "project.creator", "target": "%{ProjectName}.creator", "openAsProject": true },
+				{ "source": "project.includes", "target": "%{ProjectName}.includes" },
+				{ "source": "project.config", "target": "%{ProjectName}.config" },
+				{ "source": "project.files", "target": "%{ProjectName}.files" },
+
+				{ "source": "SPL/stm32f10x_conf.h" },
+				{ "source": "SPL/Makefile" },
+				{ "source": "SPL/.gitignore" },
+
+				{ "source": "extra/stm32f103x8_openocd.cfg" },
+				{ "source": "extra/stm32f103x8_flash.ld" },
+
+				{ "source": "src/main.c", "openInEditor": true },
+				{ "source": "Makefile"},
+				{ "source": ".gitignore"}
+			]
+		}
+	]
+}

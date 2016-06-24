@@ -3,12 +3,12 @@ lc = $(shell echo $1 | tr '[:upper:]' '[:lower:]')
 STM32_DEV  := STM32F10X_MD
 SPL_NAME   := $(call lc,$(STM32_DEV))
 
-SPL_PATH   := %StdPeriph_Lib%
+SPL_PATH   := %{StdPeriph_Lib}
 
 CMSIS_LIB  := $(SPL_PATH)/Libraries/CMSIS
 SPL_DRIVER := $(SPL_PATH)/Libraries/STM32F10x_StdPeriph_Driver
 
-TOOLCHAIN  := %ToolChain%
+TOOLCHAIN  := %{ToolChain}
 CC         := $(TOOLCHAIN)/../bin/arm-none-eabi-gcc
 AR         := $(TOOLCHAIN)/../bin/arm-none-eabi-ar
 
