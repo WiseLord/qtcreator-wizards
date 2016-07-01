@@ -63,4 +63,4 @@ flash: $(ELF)
 
 .PHONY: fuse
 fuse:
-	$(AVRDUDE) $(AD_CMD) %FUSEBIT_STRING%
+	$(AVRDUDE) $(AD_CMD) %{FUSEBIT_STRING}
