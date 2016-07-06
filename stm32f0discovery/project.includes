@@ -1,6 +1,6 @@
-%{StdPeriph_Lib}/Libraries/CMSIS/CM3/DeviceSupport/ST/STM32F10x
-%{StdPeriph_Lib}/Libraries/CMSIS/CM3/CoreSupport
-%{StdPeriph_Lib}/Libraries/STM32F10x_StdPeriph_Driver/inc
+%{StdPeriph_Lib}/Libraries/CMSIS/Device/ST/STM32F0xx/Include
+%{StdPeriph_Lib}/Libraries/CMSIS/Include
+%{StdPeriph_Lib}/Libraries/STM32F0xx_StdPeriph_Driver/inc
 
 %{ToolChain}/include
 
