@@ -1,3 +1,4 @@
+.astylerc
 Makefile
 arduinopromini.h
 main.c

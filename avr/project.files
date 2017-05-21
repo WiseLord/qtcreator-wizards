@@ -1,3 +1,4 @@
+.astylerc
 Makefile
 main.c
 pins.h

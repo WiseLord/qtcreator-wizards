@@ -57,6 +57,7 @@
                 { "source": "pins.h" },
                 { "source": "Makefile" },
                 { "source": "size.sh" },
+                { "source": ".astylerc" },
                 { "source": ".gitignore" }
             ]
         }
