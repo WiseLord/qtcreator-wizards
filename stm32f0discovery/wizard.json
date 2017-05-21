@@ -2,10 +2,10 @@
 	"version": 1,
 	"supportedProjectTypes": ["GenericProjectManager.GenericProject"],
 	"id": "B.STM32F0Discovery",
-	"category": "A.MCU",
+	"category": "A.STM32",
 	"trDescription": "Creates an STM32F0Discovery project based on the Makefile.",
 	"trDisplayName": "STM32F0Discovery Project",
-	"trDisplayCategory": "Microcontrollers",
+	"trDisplayCategory": "STM32 MCUs",
 	"icon": "stm32.jpg",
 	"enabled": "true",
 
