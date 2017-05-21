@@ -1,0 +1,64 @@
+{
+    "version": 1,
+    "supportedProjectTypes": ["GenericProjectManager.GenericProject"],
+    "id": "B.ARduinoProMini",
+    "category": "A.AVR_8bit",
+    "trDescription": "Creates ATmega328 (Arduino Pro Mini board) project based on the Makefile.",
+    "trDisplayName": "Arduino Pro Mini Project",
+    "trDisplayCategory": "AVR 8bit MCUs",
+    "icon": "atmega328.jpg",
+    "enabled": "true",
+
+    "options":
+    [
+    ],
+
+    "pages" :
+    [
+        {
+            "trDisplayName": "Project Location",
+            "trShortTitle": "Location",
+            "typeId": "Project"
+        },
+        {
+            "trDisplayName": "Project parameters",
+            "trShortTitle": "Parameters",
+            "typeId": "Fields",
+            "data":
+            [
+                {
+                    "name": "AVR_INCLUDE_DIR",
+                    "trDisplayName": "Headers dir:",
+                    "type": "PathChooser",
+                    "mandatory": true,
+                    "data":
+                    {
+                        "kind": "existingDirectory",
+                        "path": "/usr/avr/include"
+                    }
+                }
+            ]
+        }
+    ],
+
+    "generators" :
+    [
+        {
+            "typeId": "File",
+            "data":
+            [
+                { "source": "project.creator", "target": "%{ProjectName}.creator", "openAsProject": true },
+                { "source": "project.includes", "target": "%{ProjectName}.includes" },
+                { "source": "project.config", "target": "%{ProjectName}.config" },
+                { "source": "project.files", "target": "%{ProjectName}.files" },
+
+                { "source": "main.c", "openInEditor": true },
+                { "source": "arduinopromini.h" },
+                { "source": "pins.h" },
+                { "source": "Makefile" },
+                { "source": "size.sh" },
+                { "source": ".gitignore" }
+            ]
+        }
+    ]
+}
