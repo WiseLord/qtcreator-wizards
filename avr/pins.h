@@ -9,8 +9,12 @@
 #define PORT(x)             CONCAT(PORT,x)
 #define PIN(x)              CONCAT(PIN,x)
 
+#define OUT(x)              DDR(x) |= x ## _LINE
+#define IN(x)               DDR(x) &= ~x ## _LINE
+#define SET(x)              PORT(x) |= x ## _LINE
+#define CLR(x)              PORT(x) &= ~x ## _LINE
 
-#define LED_GREEN           C
-#define LED_GREE_LINE       (1<<0)
+#define LED_RED             C
+#define LED_RED_LINE       (1<<0)
 
 #endif // PINS_H

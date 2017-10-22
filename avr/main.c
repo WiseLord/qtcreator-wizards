@@ -5,12 +5,12 @@
 
 int main(void)
 {
-    DDR(LED_GREEN) |= LED_GREE_LINE;
+    OUT(LED_RED);
 
     while (1) {
-        PORT(LED_GREEN) &= ~LED_GREE_LINE;
+        CLR(LED_RED);
         _delay_ms(250);
-        PORT(LED_GREEN) |= LED_GREE_LINE;
+        SET(LED_RED);
         _delay_ms(250);
     }
 

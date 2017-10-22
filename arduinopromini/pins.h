@@ -10,8 +10,12 @@
 #define PORT(x)             CONCAT(PORT,x)
 #define PIN(x)              CONCAT(PIN,x)
 
+#define OUT(x)              DDR(x) |= x ## _LINE
+#define IN(x)               DDR(x) &= ~x ## _LINE
+#define SET(x)              PORT(x) |= x ## _LINE
+#define CLR(x)              PORT(x) &= ~x ## _LINE
 
-#define LED_GREEN           ARDUINO_D13
-#define LED_GREE_LINE       ARDUINO_D13_LINE
+#define LED_RED             ARDUINO_D13
+#define LED_RED_LINE        ARDUINO_D13_LINE
 
 #endif // PINS_H
