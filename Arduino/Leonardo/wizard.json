@@ -1,0 +1,65 @@
+{
+    "version": 1,
+    "supportedProjectTypes": ["GenericProjectManager.GenericProject"],
+    "id": "C.arduinoleonardo",
+    "category": "A.AVR_8bit",
+    "trDescription": "Creates ATmega32u4 (Arduino Leonardo board) project based on the Makefile.",
+    "trDisplayName": "Arduino Leonardo Project",
+    "trDisplayCategory": "AVR 8bit MCUs",
+    "icon": "atmega328.jpg",
+    "enabled": "true",
+
+    "options":
+    [
+    ],
+
+    "pages" :
+    [
+        {
+            "trDisplayName": "Project Location",
+            "trShortTitle": "Location",
+            "typeId": "Project"
+        },
+        {
+            "trDisplayName": "Project parameters",
+            "trShortTitle": "Parameters",
+            "typeId": "Fields",
+            "data":
+            [
+                {
+                    "name": "AVR_INCLUDE_DIR",
+                    "trDisplayName": "Headers dir:",
+                    "type": "PathChooser",
+                    "mandatory": true,
+                    "data":
+                    {
+                        "kind": "existingDirectory",
+                        "path": "/usr/avr/include"
+                    }
+                }
+            ]
+        }
+    ],
+
+    "generators" :
+    [
+        {
+            "typeId": "File",
+            "data":
+            [
+                { "source": "project.creator", "target": "%{ProjectName}.creator", "openAsProject": true },
+                { "source": "project.includes", "target": "%{ProjectName}.includes" },
+                { "source": "project.config", "target": "%{ProjectName}.config" },
+                { "source": "project.files", "target": "%{ProjectName}.files" },
+
+                { "source": "main.c", "openInEditor": true },
+                { "source": "arduinoleonardo.h" },
+                { "source": "pins.h" },
+                { "source": "Makefile" },
+                { "source": "size.sh" },
+                { "source": ".astylerc" },
+                { "source": ".gitignore" }
+            ]
+        }
+    ]
+}

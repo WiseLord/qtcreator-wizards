@@ -5,12 +5,12 @@
 
 int main(void)
 {
-    OUT(LED_RED);
+    OUT(LED);
 
     while (1) {
-        CLR(LED_RED);
+        CLR(LED);
         _delay_ms(250);
-        SET(LED_RED);
+        SET(LED);
         _delay_ms(250);
     }
 

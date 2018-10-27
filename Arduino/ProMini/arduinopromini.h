@@ -1,5 +1,5 @@
-#ifndef ARDUINO_H
-#define ARDUINO_H
+#ifndef ARDUINO_PRO_MINI_H
+#define ARDUINO_PRO_MINI_H
 
 #define ARDUINO_A0              C
 #define ARDUINO_A0_LINE         (1<<0)
@@ -58,4 +58,4 @@
 #define ARDUINO_SCL             ARDUINO_A5
 #define ARDUINO_SCL_LINE        ARDUINO_A5_LINE
 
-#endif /* ARDUINO_H */
+#endif // ARDUINO_PRO_MINI_H

@@ -1,0 +1,61 @@
+{
+	"version": 1,
+	"supportedProjectTypes": ["GenericProjectManager.GenericProject"],
+	"id": "B.BluePill",
+	"category": "A.STM32CubeMX",
+	"trDescription": "STM32CubeMX project for STM32F103C8T6 (BluePill board)",
+	"trDisplayName": "STM32CubeMX BluePill",
+	"trDisplayCategory": "STM32CubeMX",
+	"icon": "stm32.jpg",
+	"enabled": "true",
+
+	"options":
+	[
+	],
+
+	"pages" :
+	[
+		{
+			"trDisplayName": "Project Location",
+			"trShortTitle": "Location",
+			"typeId": "Project"
+		},
+		{
+			"trDisplayName": "Project parameters",
+			"trShortTitle": "Parameters",
+			"typeId": "Fields",
+			"data":
+			[
+				{
+					"name": "ToolChain",
+					"trDisplayName": "ToolChain directory",
+					"type": "PathChooser",
+					"mandatory": true,
+					"data":
+					{
+						"kind": "existingDirectory",
+						"path": "/home/STM32/gcc-arm-none-eabi-7-2017-q4-major"
+					}
+				}
+			]
+		}
+	],
+
+	"generators" :
+	[
+		{
+			"typeId": "File",
+			"data":
+			[
+				{ "source": "project.creator", "target": "%{ProjectName}.creator", "openAsProject": true },
+				{ "source": "project.includes", "target": "%{ProjectName}.includes" },
+				{ "source": "project.config", "target": "%{ProjectName}.config" },
+				{ "source": "project.files", "target": "%{ProjectName}.files" },
+				{ "source": "project.ioc", "target": "%{ProjectName}.ioc" },
+
+				{ "source": "Makefile"},
+				{ "source": ".gitignore"}
+			]
+		}
+	]
+}
